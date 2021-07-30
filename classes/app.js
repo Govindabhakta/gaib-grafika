@@ -14,6 +14,12 @@ class App
         this.objects = [];
         this.programs = programs;
 
+        this.vbo = gl.createBuffer(); // Vertex buffer object
+        this.ibo = gl.createBuffer(); // Index buffer object
+        // this.tbo = gl.createBuffer(); // Texture buffer objects later
+
+  
+
         // TESTING
         let pos = [
         -0.5,  0.5, -5.0,
@@ -34,8 +40,19 @@ class App
             ]
         
         
-
+        // program specific
         this.gl.useProgram(this.programs[2].getProgram())
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
+        let posAttribLocation = gl.getAttribLocation(this.programs[2].getProgram(), "vertPosition");
+        gl.vertexAttribPointer(
+            posAttribLocation,
+            3,
+            gl.FLOAT,
+            gl.FALSE,
+            3 * Float32Array.BYTES_PER_ELEMENT,
+            0
+        )
+        gl.enableVertexAttribArray(posAttribLocation);
 
         let projection = {
             fov: toRadian(45),
@@ -48,8 +65,8 @@ class App
         console.log(projMatrix);
     
         this.programs[2].setUniform("projection", projMatrix);
-        let glob = new GLObject(gl, this.programs[2].getProgram(), pos, indices);
-        let glob2 = new GLObject(gl, this.programs[2].getProgram(), pos2, indices);
+        let glob = new GLObject(gl, this.programs[2].getProgram(), pos, indices, this.vbo, this.ibo);
+        let glob2 = new GLObject(gl, this.programs[2].getProgram(), pos2, indices, this.vbo, this.ibo);
         this.objects.push(glob);
         this.objects.push(glob2);
     }
