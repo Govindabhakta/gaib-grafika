@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
-<body onload="Initialize()">
+<body onload="Main()">
     <div class="container-fluid">
         <div class="row" >
 
@@ -26,8 +26,16 @@
         </div>
     </div>
 
+    <!-- Shader Source Text -->
     <script src="shaders/shaders_2d.js"></script>
     <script src="shaders/shaders_3d.js"></script>
-    <script src="scripts.js"></script>
+    <script src="shaders/shader_default.js"></script>
+
+    <!-- Class declarations -->
+    <script src="classes/shaderprogram.js"></script>
+    <script src="classes/app.js"></script>
+
+    <!-- Application main logic -->
+    <script src="main.js"></script>
 </body>
 </html>
