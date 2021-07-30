@@ -23,7 +23,7 @@ class ShaderProgram {
 
         this.gl.shaderSource(shader, text);
         this.gl.compileShader(shader);
-        if (!this.gl.getShaderParamter(shader, this.gl.COMPILE_STATUS))
+        if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS))
         {
             alert("PROGRAM.createShader() Error Compiling " + this.gl.getShaderInfoLog(shader));
             this.gl.deleteShader(shader);

@@ -10,18 +10,19 @@ function Main()
 
     // Load default shader program (dsp)
     let dsp = new ShaderProgram(gl);
-    dsp.createShader(gl.VERTEX_SHADER, vertexShaderText_default);
-    dsp.createShader(gl.FRAGMENT_SHADER, fragmentShaderText_default);
+    dsp.createShader("VERTEX", vertexShaderText_default);
+    dsp.createShader("FRAGMENT", fragmentShaderText_default);
     dsp.createProgram();
 
     gl.useProgram(dsp.getProgram());
 
-    const app = new App();
-    function render() // Main render loop
+    const app = new App(gl, dsp.getProgram());
+    function loop() // Main render loop
     {
         app.update();
-        requestAnimationFrame(render);
+        app.render(gl);
+        requestAnimationFrame(loop);
     }
 
-    requestAnimationFrame(render);
+    requestAnimationFrame(loop);
 }
