@@ -13,9 +13,11 @@
         <div class="row" >
 
             <!-- Canvas -->
-            <div class="col-8">
+            <div class="col-8" style="background-color: lightgray;">
                 <div class="row align-items-center justify-content-center" style="height: 100vh;">
-                    <canvas id="canvas" width="800" height="600"></canvas>
+                    <div style="background-color: white;">
+                        <canvas id="canvas" width="800" height="600"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -35,6 +37,9 @@
     <script src="classes/shaderprogram.js"></script>
     <script src="classes/globject.js"></script>
     <script src="classes/app.js"></script>
+
+    <!-- Helper functions -->
+    <script src="scripts/matrix.js"></script>
 
     <!-- Application main logic -->
     <script src="main.js"></script>
