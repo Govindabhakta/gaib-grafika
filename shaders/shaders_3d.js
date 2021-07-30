@@ -5,10 +5,11 @@ precision mediump float;
 attribute vec3 vertPosition;
 
 uniform mat4 projection;
+uniform mat4 worldMatrix;
 
 void main()
 {
-    gl_Position = projection * vec4(vertPosition, 1.0);
+    gl_Position = projection * worldMatrix * vec4(vertPosition, 1.0);
 }
 `
 

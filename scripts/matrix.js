@@ -111,7 +111,7 @@ function scale(input, scale)
         input[12] ,    input[13],     input[14],     input[15]
     ]
 
-    return scale;
+    return result;
 }
 
 function rotate(input, radians, axis)

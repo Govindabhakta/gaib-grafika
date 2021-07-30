@@ -18,8 +18,6 @@ class App
         this.ibo = gl.createBuffer(); // Index buffer object
         // this.tbo = gl.createBuffer(); // Texture buffer objects later
 
-  
-
         // TESTING
         let pos = [
         -0.5,  0.5, -5.0,
@@ -65,8 +63,8 @@ class App
         console.log(projMatrix);
     
         this.programs[2].setUniform("projection", projMatrix);
-        let glob = new GLObject(gl, this.programs[2].getProgram(), pos, indices, this.vbo, this.ibo);
-        let glob2 = new GLObject(gl, this.programs[2].getProgram(), pos2, indices, this.vbo, this.ibo);
+        let glob = new GLObject(this.programs[2], pos, indices, this.vbo, this.ibo);
+        let glob2 = new GLObject(this.programs[2], pos2, indices, this.vbo, this.ibo);
         this.objects.push(glob);
         this.objects.push(glob2);
     }
