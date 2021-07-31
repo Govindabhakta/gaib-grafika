@@ -17,11 +17,33 @@ class App
         // this.tbo = gl.createBuffer(); // Texture buffer objects later
 
         this.setupScene(scene, gl);
+        this.easyAngle = 0;
     }
 
     update()
     {
         // Update what's supposed to be on screen and stuff
+        switch(this.scene)
+        {
+            case "easy": 
+                this.easyAngle = performance.now() / 25 / 6 * 2 * Math.PI;
+                this.objects[0].rotation.y = this.easyAngle;
+                this.objects[0].rotation.x = this.easyAngle * 0.1;
+                console.log("ROTATING");
+                break;
+
+
+            case "medium": 
+ 
+                break;
+
+            case "bonus":
+
+                break;
+            default:
+
+                break;
+        }
     }
 
     render(gl)
@@ -35,6 +57,7 @@ class App
 
     setupScene(scene, gl)
     {
+        this.scene = scene;
         let posAttribLocation;
         let projection;
         let projMatrix;
@@ -64,6 +87,7 @@ class App
                 this.programs[2].setUniform("projection", projMatrix);
 
                 this.objects = easyhard(this.programs[2], this.vbo, this.ibo);
+                easy_controls(this.objects[1]);
                 break;
 
 

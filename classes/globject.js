@@ -36,6 +36,18 @@ class GLObject
             z: 1
         }
         
+        this.useColor = false;
+        this.colorV = [0.5, 0.5, 0.5];
+    }
+
+    setUseColor(bool)
+    {
+        this.useColor = bool;
+    }
+
+    setColor(vec3)
+    { 
+        this.colorV = vec3;
     }
 
     setProgram(program)
@@ -46,6 +58,9 @@ class GLObject
     draw(gl)
     {
         this.program.setUniform("worldMatrix", this.getWorldMatrix());
+
+        this.program.setUniform1i("useColor", this.useColor);
+        this.program.setUniform3fv("colorV", this.colorV);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW);

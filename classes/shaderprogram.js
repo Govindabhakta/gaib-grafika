@@ -47,6 +47,18 @@ class ShaderProgram {
         this.gl.uniformMatrix4fv(uLocation, this.gl.FALSE, matrix4);
     }
 
+    setUniform3fv(uniformName, vec3)
+    {
+        let uLocation = this.gl.getUniformLocation(this.program, uniformName);
+        this.gl.uniform3fv(uLocation, vec3);
+    }
+
+    setUniform1i(uniformName, bool)
+    {
+        let uLocation = this.gl.getUniformLocation(this.program, uniformName);
+        this.gl.uniform1i(uLocation, bool);
+    }
+
     createProgram()
     {
         if (!this.vertex_shader || !this.fragment_shader)
