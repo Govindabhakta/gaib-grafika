@@ -3,12 +3,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GAIB - Grafika Hard</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
-<body onload="Main('start')">
+<body onload="Main('hard')">
     <div class="container-fluid">
         <div class="row" >
 
@@ -25,40 +25,36 @@
             <div class="col-4" style="background-color: gray;">
                 <div class="container" style="padding: 25px">
                     <div class="row">
-                        <div class="col">
-                            <a href="pages/easy.html" class="btn btn-primary" role="button">EASY</a>
+                        <div class="col-12">
+                            <a href="easy.html" class="btn btn-primary" role="button">EASY/HARD</a>
 
-                            <a href="pages/medium.html" class="btn btn-primary" role="button">MEDIUM</a>
+                            <a href="medium.html" class="btn btn-primary" role="button">MEDIUM</a>
 
-                            <a href="pages/hard.html" class="btn btn-primary" role="button">HARD</a>
-
-                            <a href="pages/bonus.html" class="btn btn-primary" role="button">BONUS</a>
+                            <a href="bonus.html" class="btn btn-primary" role="button">BONUS</a>
+                        </div>
+                        <div class="col-12">
+                            <h1>HARD</h1>
                         </div>
                     </div>
-                    <div class="row">
-                        <h1></h1>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>
 
     <!-- Shader Source Text -->
-    <script src="shaders/shaders_3d.js"></script>
-    <script src="shaders/shaders_3d_t.js"></script>
-    <script src="shaders/shader_default.js"></script>
+    <script src="../shaders/shaders_3d.js"></script>
+    <script src="../shaders/shaders_3d_t.js"></script>
+    <script src="../shaders/shader_default.js"></script>
 
     <!-- Class declarations -->
-    <script src="classes/shaderprogram.js"></script>
-    <script src="classes/globject.js"></script>
-    <script src="classes/app.js"></script>
-
-    <!-- Application main logic -->
-    <script src="main.js"></script>
+    <script src="../classes/shaderprogram.js"></script>
+    <script src="../classes/globject.js"></script>
+    <script src="../classes/app.js"></script>
 
     <!-- Helper functions -->
-    <script src="scripts/matrix.js"></script>
+    <script src="../scripts/matrix.js"></script>
 
+    <!-- Application main logic -->
+    <script src="../main.js"></script>
 </body>
 </html>

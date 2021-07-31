@@ -1,10 +1,10 @@
-function Main()
+function Main(scene)
 {
-    console.log("Initializing canvas");
+    console.log("Initializing canvas " + scene);
     let canvas = document.getElementById("canvas");
     let gl = canvas.getContext('webgl');
     
-    gl.clearColor(0.0, 1.0, 1.0, 1.0);
+    gl.clearColor(1.0, 1.0, 1.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.enable(gl.DEPTH_TEST);
 
@@ -17,15 +17,16 @@ function Main()
     dsp.createProgram();
 
     // Load other shader programs
+    let d2 = new ShaderProgram(gl);
+    d2.createShader("VERTEX", vertexShaderText_3d_withTexture);
+    d2.createShader("FRAGMENT", fragmentShaderText_3d_withTexture);
+    d2.createProgram();
+
     let d3 = new ShaderProgram(gl);
     d3.createShader("VERTEX", vertexShaderText_3d);
     d3.createShader("FRAGMENT", fragmentShaderText_3d);
     d3.createProgram();
 
-    let d2 = new ShaderProgram(gl);
-    d2.createShader("VERTEX", vertexShaderText_2d);
-    d2.createShader("FRAGMENT", fragmentShaderText_2d);
-    d2.createProgram();
 
     gl.useProgram(dsp.getProgram());
 
@@ -33,7 +34,7 @@ function Main()
     shaderprograms.push(d2);
     shaderprograms.push(d3);
 
-    const app = new App(gl, shaderprograms);
+    const app = new App(gl, shaderprograms, scene);
     function loop() // Main render loop
     {
         app.update();

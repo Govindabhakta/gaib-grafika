@@ -44,7 +44,7 @@ class ShaderProgram {
     setUniform(uniformName, matrix4)
     {
         let uLocation = this.gl.getUniformLocation(this.program, uniformName);
-        this.gl.uniformMatrix4fv(uLocation, this.gl.TRUE, matrix4);
+        this.gl.uniformMatrix4fv(uLocation, this.gl.FALSE, matrix4);
     }
 
     createProgram()

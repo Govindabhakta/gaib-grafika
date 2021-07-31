@@ -1,8 +1,11 @@
-const vertexShaderText_2d = 
+const vertexShaderText_3d_withTexture = 
 `
 precision mediump float;
 
 attribute vec3 vertPosition;
+
+uniform mat4 projection;
+uniform mat4 worldMatrix;
 
 void main()
 {
@@ -10,7 +13,7 @@ void main()
 }
 `
 
-const fragmentShaderText_2d = 
+const fragmentShaderText_3d_withTexture = 
 `
 precision mediump float;
 
