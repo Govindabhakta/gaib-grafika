@@ -85,7 +85,7 @@ function setup_slider_controls(obj, sliderID, axis)
     }
 }
 // function obj_reader(obj) // OBJ is read as string // not used since JSON converted OBJ is availabe.
-// { // probably doesn't work?
+// { 
 //     let lines = obj.split("\n");
     
 //     console.log(lines);
