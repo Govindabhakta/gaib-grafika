@@ -1,11 +1,16 @@
-function easyhard(program, vbo, ibo)
+/**
+ * EASY / HARD SCENE CONTROLS
+ * 
+ */
+
+function easyhard(program, vbo, ibo, gl)
 {
-    let square = new GLObject(program, cube.vertexes, cube.indices, vbo, ibo);
+    let square = new GLObject(program, cube.vertexes, cube.indices, vbo, ibo, gl);
     square.translate = {x: 1, y: 0, z: -5}
 
 
     let hollow_data = reorder_obj_data(hollow_square.vertexes, hollow_square.indices);
-    let hollow = new GLObject(program, hollow_data.positions, hollow_data.indexes, vbo, ibo);
+    let hollow = new GLObject(program, hollow_data.positions, hollow_data.indexes, vbo, ibo, gl);
     hollow.translate = {x: -1, y: 0, z: -5}
     hollow.useColor = true;
     hollow.colorV = [1.0, 0.0, 0.0];
@@ -138,7 +143,7 @@ function setup_slider_controls(obj, sliderID, axis)
 //     for(let i = 0; i < indices.length; i++)
 //     {
 //         final_vertexes.push(vertexes[(indices[i]-1) * 3 + 0]);
-//         final_vertexes.push(vertexes[(indices[i]-1) * 3 + 1]);
+//         final_vertexes.push(vertexes[(indices[i]-1) * 3 + 1]);s
 //         final_vertexes.push(vertexes[(indices[i]-1) * 3 + 2]);
 //     }
 
@@ -146,3 +151,36 @@ function setup_slider_controls(obj, sliderID, axis)
 //     return { final_vertexes, indices, texCoords, vNormals };
 // }
 
+// function setup_medium(editor)
+// {
+//     setup_button_controls("type-pen", editor);
+//     setup_button_controls("type-line", editor);
+//     setup_button_controls("type-square", editor);
+//     setup_button_controls("type-rect", editor);
+// }
+
+// function setup_button_controls(buttonID, editor)
+// {
+//     let button = document.getElementById(buttonID);
+//     button.onclick = () => {
+//         switch(buttonID)
+//         {
+//             case 'type-pen':
+//                 editor.setType("pen");
+//                 console.log("PENN");
+//                 break;
+//             case 'type-line':
+//                 editor.setType("line");
+//                 console.log("LINE");
+//                 break;
+//             case 'type-square':
+//                 editor.setType("square");
+//                 console.log("SQUARE");
+//                 break;
+//             case 'type-rect':
+//                 editor.setType("rect");
+//                 console.log("RECT");
+//                 break;
+//         }
+//     }
+// }

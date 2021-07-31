@@ -3,6 +3,8 @@ function Main(scene)
     console.log("Initializing canvas " + scene);
     let canvas = document.getElementById("canvas");
     let gl = canvas.getContext('webgl');
+
+    console.log("THIS IS CANVAS", canvas);
     
     gl.clearColor(1.0, 1.0, 1.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -34,7 +36,7 @@ function Main(scene)
     shaderprograms.push(d2);
     shaderprograms.push(d3);
 
-    const app = new App(gl, shaderprograms, scene);
+    const app = new App(gl, shaderprograms, scene, canvas);
     function loop() // Main render loop
     {
         app.update();

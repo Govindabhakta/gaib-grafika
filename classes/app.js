@@ -1,6 +1,6 @@
 class App 
 {
-    constructor(gl, programs, scene) // dsp is temporary, later change it with an array of programs instead.
+    constructor(gl, programs, scene, canvas) // dsp is temporary, later change it with an array of programs instead.
     {
         /*
         PROGRAMS
@@ -11,12 +11,14 @@ class App
         this.gl = gl;
         this.objects = [];
         this.programs = programs;
+        this.canvas = canvas;
 
         this.vbo = gl.createBuffer(); // Vertex buffer object
         this.ibo = gl.createBuffer(); // Index buffer object
         // this.tbo = gl.createBuffer(); // Texture buffer objects later
 
         this.setupScene(scene, gl);
+
         this.easyAngle = 0;
     }
 
@@ -34,7 +36,11 @@ class App
 
 
             case "medium": 
- 
+                let temp = this.editor.getObject();
+                if (temp)
+                {
+                    this.objects.push(temp);
+                }
                 break;
 
             case "bonus":
@@ -86,7 +92,7 @@ class App
                 projMatrix = perspective(projection.fov, projection.aspect, projection.near, projection.far);
                 this.programs[2].setUniform("projection", projMatrix);
 
-                this.objects = easyhard(this.programs[2], this.vbo, this.ibo);
+                this.objects = easyhard(this.programs[2], this.vbo, this.ibo, gl);
                 easy_controls(this.objects[1]);
                 break;
 
@@ -107,6 +113,33 @@ class App
     
                 projMatrix = identity();
                 this.programs[2].setUniform("projection", projMatrix);
+
+                    let pos = [
+                    -0.5,  0.5, 0.0,
+                    -0.5, -0.5, 0.0,
+                        0.5, -0.5, 0.0,
+                        0.5,  0.5, 0.0
+                    ]
+
+                    let indices = [
+                        0, 1, 3, 3, 1, 2
+                    ]
+
+                    let pos2 = [
+                            0.5,  1.5, 0.0,
+                            0.5,  0.5, 0.0,
+                            1.5,  0.5, 0.0,
+                            1.5,  1.5, 0.0
+                        ]
+
+                    let glob = new GLObject(this.programs[2], pos, indices, this.vbo, this.ibo, gl);
+                    let glob2 = new GLObject(this.programs[2], pos2, indices, this.vbo, this.ibo, gl);
+                    this.objects.push(glob);
+                    this.objects.push(glob2);
+                
+                this.editor = new Editor(this.programs[2], gl, this.vbo, this.ibo, this.canvas);
+                this.editor.track();
+                // setup_medium(this.editor);
                 break;
 
 

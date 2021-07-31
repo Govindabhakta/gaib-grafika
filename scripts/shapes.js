@@ -1,3 +1,52 @@
+const basic_square = {
+    vertexes: [
+        -0.5,  0.5, 0.0,
+        -0.5, -0.5, 0.0,
+        0.5, -0.5, 0.0,
+        0.5,  0.5, 0.0
+        ], 
+
+    indices: [
+            0, 1, 3, 3, 1, 2
+        ]
+}
+
+function generateRect(pos1, pos2)
+{
+    return {
+        vertexes: [
+            pos1,  pos2, 0.0,
+            pos1, pos1, 0.0,
+            pos2, pos1, 0.0,
+            pos2,  pos2, 0.0
+        ],
+
+        indices: [
+            0, 1, 3, 3, 1, 2
+        ]
+    }
+}
+
+function generateSquare(pos1, pos2)
+{
+    let delta = getPosDelta(pos1, pos2);
+    let newPoint;
+    if (Math.abs(delta.x) < Math.abs(delta.y))
+    {
+        newPoint = {
+            x: pos2.x,
+            y: pos1.y
+        }
+    } else {
+        newPoint = {
+            x: pos1.x,
+            y: pos2.y
+        }
+    }
+
+    return generateRect(pos1, newPoint);
+}
+
 const cube = 
 {
     vertexes: [

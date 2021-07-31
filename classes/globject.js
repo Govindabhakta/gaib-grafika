@@ -1,7 +1,7 @@
 class GLObject
 {
     static count = 0;
-    constructor(program, positions, indices, vbo, ibo)
+    constructor(program, positions, indices, vbo, ibo, gl)
     {
         this.id = this.count++;
 
@@ -38,6 +38,7 @@ class GLObject
         
         this.useColor = false;
         this.colorV = [0.5, 0.5, 0.5];
+        this.renderType = gl.TRIANGLES
     }
 
     setUseColor(bool)
@@ -53,6 +54,19 @@ class GLObject
     setProgram(program)
     {
         this.program = program;
+    }
+
+    setRenderType(string)
+    {
+        switch(string)
+        {
+            case "triangles":
+                this.renderType = this.gl.TRIANGLES;
+                break;
+            case "lines":
+                this.renderType = this.gl.LINES;
+                break;
+        }
     }
 
     draw(gl)
@@ -74,7 +88,7 @@ class GLObject
         // gl.bindTexture(this.texture)
         // gl.activeTexture(gl.TEXTURE0)
 
-        gl.drawElements(gl.TRIANGLES, this.vertexCount, gl.UNSIGNED_SHORT, 0);
+        gl.drawElements(this.renderType, this.vertexCount, gl.UNSIGNED_SHORT, 0);
     }
 
     getWorldMatrix()
