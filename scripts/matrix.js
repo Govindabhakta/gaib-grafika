@@ -11,6 +11,18 @@ function identity()
     return input;
 }
 
+function translationMatrix(t) {
+    // prettier-ignore
+    result = [
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 1, 0,
+      t[0], t[1], t[2], 1
+    ];
+  
+    return result;
+  }
+
 function multiply(result, a, b)
 {
     let 
@@ -95,6 +107,17 @@ function translationMatrix(t)
     ]
 
     return result;
+}
+
+function addVectors(a, b)
+{
+    let res = [
+        a[0] + b[0],
+        a[1] + b[1],
+        a[2] + b[2]
+    ]
+
+    return res;
 }
 
 function scale(input, scale)

@@ -20,8 +20,8 @@ function Main(scene)
 
     // Load other shader programs
     let d2 = new ShaderProgram(gl);
-    d2.createShader("VERTEX", vertexShaderText_3d_withTexture);
-    d2.createShader("FRAGMENT", fragmentShaderText_3d_withTexture);
+    d2.createShader("VERTEX", vertexShaderText_wT);
+    d2.createShader("FRAGMENT", fragmentShaderText_wT);
     d2.createProgram();
 
     let d3 = new ShaderProgram(gl);

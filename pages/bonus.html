@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAIB - Grafika Bonus</title>
+    <title>GAIB - Grafika Easy/Hard</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -31,17 +31,103 @@
                             <a href="medium.html" class="btn btn-primary" role="button">MEDIUM</a>
 
                             <a href="bonus.html" class="btn btn-primary" role="button">BONUS</a>
+
+                            <a href="hard-backup/textures.html" class="btn btn-primary" role="button">BONUS (TEXTURES)</a>
                         </div>
                         <div class="col-12">
                             <br>
                             <h1>BONUS</h1>
+                            
+                            <br>
+                            <div style="width: 100%;">
+                                <h3>Translation</h3>
+                                <div class="row align-items-center">
+                                    <div class="col-1 align-items-center">
+                                        <h5>X</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="-50" max="50" value="0" id="translateX" style="width: 100%;" >
+                                    </div>
+
+                                    <div class="col-1 align-items-center">
+                                        <h5>Y</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="-50" max="50" value="0" id="translateY" style="width: 100%;" >
+                                    </div>
+
+                                    <div class="col-1 align-items-center">
+                                        <h5>Z</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="-100" max="0" value="-50" id="translateZ" style="width: 100%;" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div style="width: 100%;">
+                                <h3>Rotation</h3>
+                                <div class="row align-items-center">
+                                    <div class="col-1 align-items-center">
+                                        <h5>X</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="-180" max="180" value="0" id="rotateX" style="width: 100%;" >
+                                    </div>
+
+                                    <div class="col-1 align-items-center">
+                                        <h5>Y</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="-180" max="180" value="0" id="rotateY" style="width: 100%;" >
+                                    </div>
+
+                                    <div class="col-1 align-items-center">
+                                        <h5>Z</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="-180" max="180" value="0" id="rotateZ" style="width: 100%;" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div style="width: 100%;">
+                                <h3>Color</h3>
+                                <div class="row align-items-center">
+                                    <div class="col-1 align-items-center">
+                                        <h5>R</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="0" max="255" value="127" id="colorX" style="width: 100%;" >
+                                    </div>
+
+                                    <div class="col-1 align-items-center">
+                                        <h5>G</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="0" max="255" value="127" id="colorY" style="width: 100%;" >
+                                    </div>
+
+                                    <div class="col-1 align-items-center">
+                                        <h5>B</h5>
+                                    </div>
+                                    <div class="col-11">
+                                        <input type="range" min="0" max="255" value="127" id="colorZ" style="width: 100%;" >
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
+                
             </div>
-
         </div>
     </div>
+
+    <img src="tex.png" alt="" id="tex1">;
 
     <!-- Shader Source Text -->
     <script src="../shaders/shaders_3d.js"></script>
@@ -51,6 +137,7 @@
     <!-- Class declarations -->
     <script src="../classes/shaderprogram.js"></script>
     <script src="../classes/globject.js"></script>
+    <script src="../classes//globject_wChild.js"></script>
     <script src="../classes/app.js"></script>
 
     <!-- Helper functions -->

@@ -15,7 +15,7 @@ class App
 
         this.vbo = gl.createBuffer(); // Vertex buffer object
         this.ibo = gl.createBuffer(); // Index buffer object
-        // this.tbo = gl.createBuffer(); // Texture buffer objects later
+        this.tbo = gl.createBuffer(); // Texture buffer objects
 
         this.setupScene(scene, gl);
 
@@ -65,6 +65,7 @@ class App
     {
         this.scene = scene;
         let posAttribLocation;
+        let txAttribLocation;
         let projection;
         let projMatrix;
         switch(scene)
@@ -114,64 +115,29 @@ class App
                 projMatrix = identity();
                 this.programs[2].setUniform("projection", projMatrix);
 
-                    let pos = [
-                    -0.5,  0.5, 0.0,
-                    -0.5, -0.5, 0.0,
-                        0.5, -0.5, 0.0,
-                        0.5,  0.5, 0.0
-                    ]
+                let pos = [
+                -0.5,  0.5, 0.0,
+                -0.5, -0.5, 0.0,
+                    0.5, -0.5, 0.0,
+                    0.5,  0.5, 0.0
+                ]
 
-                    let indices = [
-                        0, 1, 3, 3, 1, 2
-                    ]
+                let indices = [
+                    0, 1, 3, 3, 1, 2
+                ]
 
-                    let pos2 = [
-                            0.5,  1.5, 0.0,
-                            0.5,  0.5, 0.0,
-                            1.5,  0.5, 0.0,
-                            1.5,  1.5, 0.0
-                        ]
-
-                    let glob = new GLObject(this.programs[2], pos, indices, this.vbo, this.ibo, gl);
-                    let glob2 = new GLObject(this.programs[2], pos2, indices, this.vbo, this.ibo, gl);
-                    this.objects.push(glob);
-                    this.objects.push(glob2);
+                let glob = new GLObject(this.programs[2], pos, indices, this.vbo, this.ibo, gl);
+                this.objects.push(glob);
                 
                 this.editor = new Editor(this.programs[2], gl, this.vbo, this.ibo, this.canvas);
                 this.editor.track();
                 // setup_medium(this.editor);
                 break;
 
-
-            // case "hard": 
-            //     this.gl.useProgram(this.programs[2].getProgram())
-            //     gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
-            //     posAttribLocation = gl.getAttribLocation(this.programs[2].getProgram(), "vertPosition");
-            //     gl.vertexAttribPointer(
-            //         posAttribLocation,
-            //         3,
-            //         gl.FLOAT,
-            //         gl.FALSE,
-            //         3 * Float32Array.BYTES_PER_ELEMENT,
-            //         0
-            //     )
-            //     gl.enableVertexAttribArray(posAttribLocation);
-        
-            //     projection = {
-            //         fov: toRadian(45),
-            //         aspect: canvas.width / canvas.height,
-            //         near: 0.1,
-            //         far: 1000.0
-            //     };
-            //     projMatrix = perspective(projection.fov, projection.aspect, projection.near, projection.far);
-            //     this.programs[2].setUniform("projection", projMatrix);
-            //     break;
-
-
             case "bonus":
-                this.gl.useProgram(this.programs[2].getProgram())
+                this.gl.useProgram(this.programs[1].getProgram())
                 gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
-                posAttribLocation = gl.getAttribLocation(this.programs[2].getProgram(), "vertPosition");
+                posAttribLocation = gl.getAttribLocation(this.programs[1].getProgram(), "vertPosition");
                 gl.vertexAttribPointer(
                     posAttribLocation,
                     3,
@@ -181,7 +147,19 @@ class App
                     0
                 )
                 gl.enableVertexAttribArray(posAttribLocation);
-        
+
+                gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
+                posAttribLocation = gl.getAttribLocation(this.programs[1].getProgram(), "vertTexCoordinate");
+                gl.vertexAttribPointer(
+                    posAttribLocation,
+                    2,
+                    gl.FLOAT,
+                    gl.FALSE,
+                    2 * Float32Array.BYTES_PER_ELEMENT,
+                    0
+                )
+                gl.enableVertexAttribArray(posAttribLocation);
+
                 projection = {
                     fov: toRadian(45),
                     aspect: canvas.width / canvas.height,
@@ -189,8 +167,17 @@ class App
                     far: 1000.0
                 };
                 projMatrix = perspective(projection.fov, projection.aspect, projection.near, projection.far);
-                this.programs[2].setUniform("projection", projMatrix);
+                this.programs[1].setUniform("projection", projMatrix);
+
+                let geo = new GLObjectArticulated(this.programs[1], this.vbo, this.ibo, this.tbo, this.gl);
+
+                geo.createTextureObject(this.gl, document.getElementById("tex1"));
+                geo.translate.z = -20;
+                this.objects.push(geo);
+
                 break;
+
+
             default:
                 this.gl.useProgram(this.programs[2].getProgram())
                 gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
